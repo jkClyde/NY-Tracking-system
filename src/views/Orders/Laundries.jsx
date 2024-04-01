@@ -3,6 +3,7 @@ import { Grid, Container, IconButton, InputAdornment, TextField, Button } from '
 import AddIcon from '@mui/icons-material/Add';
 import LaundryCard from './LaundryCard';
 import SearchIcon from '@mui/icons-material/Search';
+
 import fetchOrders from './actions/fetch_orders';
 import AddOrderModal from './modals/AddOrderModal';
 
