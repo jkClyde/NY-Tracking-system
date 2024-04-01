@@ -11,9 +11,13 @@ const fetchOrders = async () => {
     // Check if the request was successful
     if (response.ok) {
       const orders = await response.json();
+
+      // Reverse the order of fetched data
+      const reversedOrders = orders.reverse();
+
       // Process the retrieved orders, e.g., update state
-      console.log(orders);
-      return orders;
+      console.log(reversedOrders);
+      return reversedOrders;
     } else {
       console.error('Failed to retrieve orders. Status code:', response.status);
       return null;
