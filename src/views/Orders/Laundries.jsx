@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Container, IconButton, InputAdornment, TextField, Button, Box } from '@mui/material';
+import { Grid, Container, IconButton, InputAdornment, TextField, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import LaundryCard from './LaundryCard';
 import SearchIcon from '@mui/icons-material/Search';

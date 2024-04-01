@@ -20,13 +20,6 @@ const PageWrapper = styled('div')(() => ({
   backgroundColor: 'transparent',
 }));
 
-const ContentWrapper = styled(Box)(({ theme }) => ({
-  backgroundColor: '#f0f0f0', // Light gray background color
-  borderRadius: '10px', // Rounded corners
-  padding: theme.spacing(4), // Add some padding
-  boxShadow: theme.shadows[3], // Add a subtle shadow
-}));
-
 const FullLayout = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);

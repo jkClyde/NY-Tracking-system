@@ -14,9 +14,6 @@ const OrderTrackingPage = () => {
       const response = await axios.post(`${BASE_URL}/orders/search/`, {
         laundry_id: orderID.toUpperCase(), // Capitalize the input
       });
-      const data = response.data;
-      console.log(response.data);
-      console.log(response.data[0].laundry_id);
       setOrder(response.data[0]);
       setError('');
     } catch (error) {

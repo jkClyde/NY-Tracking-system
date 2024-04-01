@@ -1,12 +1,4 @@
-import {
-  IconAperture,
-  IconCopy,
-  IconLayoutDashboard,
-  IconLogin,
-  IconMoodHappy,
-  IconTypography,
-  IconUserPlus,
-} from '@tabler/icons';
+import { IconAperture, IconLayoutDashboard, IconUserPlus } from '@tabler/icons';
 
 import { uniqueId } from 'lodash';
 
