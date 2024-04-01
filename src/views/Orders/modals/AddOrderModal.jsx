@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Box, TextField, Button } from '@mui/material';
+import { BASE_URL } from 'src/backend_url';
 
 const AddOrderModal = ({ open, onClose, onSubmit, setRefresher }) => {
   const [customerName, setCustomerName] = useState('');
@@ -14,7 +15,7 @@ const AddOrderModal = ({ open, onClose, onSubmit, setRefresher }) => {
         price: parseFloat(price),
       };
 
-      const response = await fetch('http://127.0.0.1:8000/orders/orders/', {
+      const response = await fetch(`${BASE_URL}/orders/orders/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
