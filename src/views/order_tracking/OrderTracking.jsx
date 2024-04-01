@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
-import { Container, TextField, Button, Typography, Paper, Grid, Divider } from '@mui/material';
+import { Container, TextField, Button, Typography, Paper, Grid } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import OrderDetails from './OrderDetails.jsx'; // Assume OrderDetails is a separate component for displaying order details
-
+import OrderDetails from './OrderDetails';
+import axios from 'axios';
+import { BASE_URL } from 'src/backend_url';
 const OrderTrackingPage = () => {
   const [orderID, setOrderID] = useState('');
   const [order, setOrder] = useState(null);
   const [error, setError] = useState('');
 
-  const handleOrderSearch = () => {
-    // Simulate fetching order details
-    setTimeout(() => {
-      if (orderID.trim() === '') {
-        setError('Please enter an order ID.');
-        setOrder(null);
-      } else {
-        setError('');
-        const mockOrder = {
-          orderID: orderID,
-          date: '2024-04-01',
-          status: 'Processing',
-          // Add more details as needed
-        };
-        setOrder(mockOrder);
-      }
-    }, 1000); // Simulate loading delay
+  const handleOrderSearch = async () => {
+    try {
+      const response = await axios.post(`${BASE_URL}/orders/search/`, {
+        laundry_id: orderID.toUpperCase(), // Capitalize the input
+      });
+      const data = response.data;
+      console.log(response.data);
+      console.log(response.data[0].laundry_id);
+      setOrder(response.data[0]);
+      setError('');
+    } catch (error) {
+      console.error('Error fetching order:', error);
+      setError('Error fetching order. Please try again.');
+      setOrder(null);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -42,7 +41,7 @@ const OrderTrackingPage = () => {
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={9}>
             <TextField
-              label="Enter Order ID"
+              label="Enter Laundry ID"
               variant="outlined"
               value={orderID}
               onChange={(e) => setOrderID(e.target.value)}
@@ -50,6 +49,7 @@ const OrderTrackingPage = () => {
               error={error !== ''}
               helperText={error}
               onKeyPress={handleKeyPress}
+              inputProps={{ style: { textTransform: 'uppercase' } }} // Ensure input display is uppercase
             />
           </Grid>
           <Grid item xs={3}>

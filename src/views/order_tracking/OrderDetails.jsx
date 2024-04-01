@@ -7,10 +7,17 @@ const OrderDetails = ({ order }) => {
       <Typography variant="h6" gutterBottom>
         Order Details
       </Typography>
-      <Typography variant="body1">Order ID: {order.orderID}</Typography>
-      <Typography variant="body1">Date: {order.date}</Typography>
-      <Typography variant="body1">Status: {order.status}</Typography>
-      {/* Add more order details here */}
+      <Typography variant="body1">Order ID: {order.laundry_id}</Typography>
+      <Typography variant="body1">Date Added: {order.date_added}</Typography>
+      {order.is_ready ? (
+        <Typography variant="body1" style={{ color: 'green', marginTop: '8px' }}>
+          The laundry is ready for pick up.
+        </Typography>
+      ) : (
+        <Typography variant="body1" style={{ color: 'red', marginTop: '8px' }}>
+          The laundry is not yet ready for pick up.
+        </Typography>
+      )}
     </div>
   );
 };

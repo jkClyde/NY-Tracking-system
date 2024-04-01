@@ -1,38 +1,49 @@
-import React from 'react';
-import { Grid, Container, IconButton, InputAdornment, TextField } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Grid, Container, IconButton, InputAdornment, TextField, Button, Box } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import LaundryCard from './LaundryCard';
 import SearchIcon from '@mui/icons-material/Search';
-
-const laundryData = [
-  {
-    name: 'John Doe',
-    dateAdded: '2024-04-01', // Use a valid date format (YYYY-MM-DD)
-    laundryId: 'LD001',
-    price: 150,
-    kilo: 2.5,
-    status: 'Pending',
-  },
-  {
-    name: 'Jane Smith',
-    dateAdded: '2024-03-30',
-    laundryId: 'LD002',
-    price: 320,
-    kilo: 5,
-    status: 'In Progress',
-  },
-  // Add more laundry items as needed
-];
+import fetchOrders from './actions/fetch_orders';
+import AddOrderModal from './modals/AddOrderModal';
 
 const LaundryPage = () => {
+  const [orders, setOrders] = useState([]);
+  const [refresher, setRefresher] = useState(0);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchOrdersAndSetState = async () => {
+      const fetchedOrders = await fetchOrders();
+      if (fetchedOrders) {
+        setOrders(fetchedOrders);
+      }
+    };
+
+    fetchOrdersAndSetState();
+  }, [refresher]);
+
   const handleSearch = () => {
-    // Add search functionality here
+    console.log(orders);
+  };
+
+  const handleAddOrder = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const handleCloseAddModal = () => {
+    setIsAddModalOpen(false);
+  };
+
+  const handleSubmitOrder = (newOrder) => {
+    // You can implement the logic to submit the new order here
+    console.log(newOrder);
   };
 
   return (
     <Container maxWidth="lg">
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Grid container justifyContent="flex-start">
+          <Grid container justifyContent="space-between">
             <Grid item>
               <TextField
                 label="Search"
@@ -49,14 +60,30 @@ const LaundryPage = () => {
                 }}
               />
             </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                onClick={handleAddOrder}
+                startIcon={<AddIcon />}
+                sx={{ marginRight: 2 }}
+              >
+                Add
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
-        {laundryData.map((item, index) => (
+        {orders.map((order, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <LaundryCard {...item} />
+            <LaundryCard {...order} setRefresher={setRefresher} />
           </Grid>
         ))}
       </Grid>
+      <AddOrderModal
+        open={isAddModalOpen}
+        onClose={handleCloseAddModal}
+        onSubmit={handleSubmitOrder}
+        setRefresher={setRefresher}
+      />
     </Container>
   );
 };
