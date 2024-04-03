@@ -11,8 +11,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button'; // Import Button component
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
+
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {
@@ -43,7 +46,7 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' }, backgroundColor: 'rgba(0,0,0,0.04)' }}>
         <TableCell>
           <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -65,7 +68,7 @@ function Row(props) {
                 History
               </Typography>
               <Table size="small" aria-label="purchases">
-                <TableHead>
+                <TableHead sx={{ backgroundColor: ' #4cc9f0' }}>
                   <TableRow>
                     <TableCell>Date</TableCell>
                     <TableCell>Customer</TableCell>
@@ -125,15 +128,23 @@ const rows = [
 export default function CollapsibleTable() {
   return (
     <TableContainer component={Paper}>
+      <Button
+        variant="contained"
+        color="primary"
+        style={{ marginBottom: '10px', marginLeft: '1090px' }}
+      >
+        Add
+      </Button>
+      
       <Table aria-label="collapsible table">
-        <TableHead>
+        <TableHead sx={{ backgroundColor: '#ffba08' }}>
           <TableRow>
             <TableCell />
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Customers Name</TableCell>
+            <TableCell align="right">Date</TableCell>
+            <TableCell align="right">Kilo</TableCell>
+            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
