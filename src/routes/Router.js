@@ -17,6 +17,10 @@ const Register = Loadable(lazy(() => import('../views/authentication/Register'))
 const Login = Loadable(lazy(() => import('../views/authentication/Login')));
 const LaundriesPage = Loadable(lazy(() => import('../views/Orders/Laundries')));
 const OrderTracking = Loadable(lazy(() => import('../views/order_tracking/OrderTracking')));
+const AboutPage = Loadable(lazy(() => import('../views/about/AboutPage')));
+const CustomersPage = Loadable(lazy(() => import('../views/customers/CustomersPage')));
+
+
 
 const Router = [
   {
@@ -27,7 +31,8 @@ const Router = [
       { path: '/dashboard', exact: true, element: <Dashboard /> },
       { path: '/orders', exact: true, element: <LaundriesPage /> },
       { path: '/order-tracking', exact: true, element: <OrderTracking /> },
-
+      { path: '/about-us', exact: true, element: <AboutPage /> },
+      { path: '/customers-table', exact: true, element: <CustomersPage /> },
       { path: '/sample-page', exact: true, element: <SamplePage /> },
       { path: '/icons', exact: true, element: <Icons /> },
       { path: '/ui/typography', exact: true, element: <TypographyPage /> },

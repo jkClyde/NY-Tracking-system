@@ -26,6 +26,18 @@ const Menuitems = [
     icon: IconUserPlus,
     href: '/order-tracking',
   },
+  {
+    id: uniqueId(),
+    title: 'About',
+    icon: IconUserPlus,
+    href: '/about-us',
+  },
+  {
+    id: uniqueId(),
+    title: 'Customers',
+    icon: IconUserPlus,
+    href: '/customers-table',
+  },
 ];
 
 export default Menuitems;
